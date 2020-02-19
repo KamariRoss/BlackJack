@@ -82,11 +82,10 @@ namespace BlackJack
           dealerTotal += dealerHand[i].GetCardValue();
         }
         // checkpoint 1.
-        /*Console.WriteLine($"Dealer total is {dealerTotal}");
 
         Console.WriteLine($"Your first card is {playerHand[0].Rank} of {playerHand[0].Suit}");
         Console.WriteLine($"Your second card is {playerHand[1].Rank} of {playerHand[1].Suit}");
-        */
+
 
         // 7. Creating black jack, bust, or draw
         bool pass = true;
@@ -141,7 +140,7 @@ namespace BlackJack
             }
             if (playerTotal == 21 && dealerTotal > 21 || playerTotal == 21 && dealerTotal != 21 || playerTotal == 21 && dealerTotal < 21)
             {
-              Console.WriteLine($"Congratulations {user} your total was {playerTotal} and the dealer total was {dealerTotal}");
+              Console.WriteLine($"BlackJack! Congratulations {user} your total was {playerTotal} and the dealer total was {dealerTotal}");
             }
             else if (dealerTotal == playerTotal && dealerTotal < 21 && playerTotal < 21)
             {
@@ -153,15 +152,15 @@ namespace BlackJack
             }
             else if (dealerTotal == 21 && playerTotal > 21 || dealerTotal == 21 && playerTotal != 21 || dealerTotal == 21 && playerTotal < 21)
             {
-              Console.WriteLine($"You lose! The dealer's total was {dealerTotal} and yours is {playerTotal}");
+              Console.WriteLine($"You lose! The dealer's total was {dealerTotal} and yours was {playerTotal}");
             }
-            else if (dealerTotal != 21 && playerTotal != 21 || dealerTotal > playerTotal)
+            else if (dealerTotal != 21 && playerTotal != 21 && dealerTotal > playerTotal)
             {
-              Console.WriteLine("You lose! The dealer's total was {dealerTotal} and yours is {playerTotal} ");
+              Console.WriteLine($"You lose! The dealer's total was {dealerTotal} and yours was {playerTotal} ");
             }
-            else if (dealerTotal != 21 && playerTotal != 21 || dealerTotal < playerTotal)
+            else if (dealerTotal != 21 && playerTotal != 21 && dealerTotal < playerTotal)
             {
-              Console.WriteLine(" You win! The dealer's total was {dealerTotal} and yours is {playerTotal}");
+              Console.WriteLine($" You win! The dealer's total was {dealerTotal} and yours was {playerTotal}");
             }
           }
         }
