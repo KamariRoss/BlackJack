@@ -11,6 +11,7 @@ namespace BlackJack
       bool flag = true;
       while (flag)
       {
+
         // 1. Challenge user to a game
         Console.Write("Hello! Welcome to Blackjack! ");
         Console.WriteLine("What is you name?");
@@ -88,200 +89,90 @@ namespace BlackJack
         */
 
         // 7. Creating black jack, bust, or draw
-
-        if (playerTotal == 21 && dealerTotal > 21 || playerTotal == 21 && dealerTotal != 21 || playerTotal == 21 && dealerTotal < 21)
+        bool pass = true;
+        while (pass)
         {
-          Console.WriteLine($"Congratulations {user} your total was {playerTotal} and the dealer total was {dealerTotal}");
 
-        }
-
-        else if (dealerTotal == playerTotal && dealerTotal < 21 && playerTotal < 21)
-        {
-          Console.WriteLine("${user}, you and the dealer bust ");
-
-        }
-        else if (dealerTotal == 21 && playerTotal == 21)
-        {
-          Console.WriteLine("${user}, you and the dealer had {playerTotal} ");
-
-        }
-        else if (dealerTotal == 21 && playerTotal > 21 || dealerTotal == 21 && playerTotal != 21 || dealerTotal == 21 && playerTotal < 21)
-        {
-          Console.WriteLine("${user}, you and the dealer had {playerTotal} ");
-        }
-        else if (dealerTotal != 21 && playerTotal != 21 || dealerTotal < 21 && playerTotal < 21)
-        {
           Console.WriteLine("hit or stand");
           var playerChoice = Console.ReadLine().ToLower();
           if (playerChoice == "hit")
           {
+            pass = true;
+
             topcard = deck[0];
             deck.RemoveAt(0);
             playerHand.Add(topcard);
 
+            playerTotal = 0;
             for (int i = 0; i < playerHand.Count; i++)
             {
               playerTotal += playerHand[i].GetCardValue();
             }
 
             Console.WriteLine($"Your total is {playerTotal}");
-            Console.WriteLine($"Your first card is {playerHand[0].Rank} of {playerHand[0].Suit}");
-            Console.WriteLine($"Your second card is {playerHand[1].Rank} of {playerHand[1].Suit}");
-            Console.WriteLine($"Your third card is {playerHand[2].Rank} of {playerHand[2].Suit}");
-            if (playerTotal < 21)
+
+          }
+          else if (playerChoice == "stand")
+          {
+            pass = false;
+
+          }
+          if (playerTotal >= 21 || playerChoice == "stand")
+          {
+            pass = false;
+            bool limit = false;
+            while (limit)
             {
-              Console.WriteLine("hit or stand");
-              playerChoice = Console.ReadLine().ToLower();
-              if (playerChoice == "stand")
+              dealerHand.Add(topcard);
+              topcard = deck[0];
+              deck.RemoveAt(0);
+              dealerHand.Add(topcard);
+
+              dealerTotal = 0;
+              for (int i = 0; i < dealerHand.Count; i++)
               {
-
-                while (dealerTotal < 17)
-                {
-
-                  topcard = deck[0];
-                  deck.RemoveAt(0);
-                  dealerHand.Add(topcard);
-
-                  for (int i = 0; i < dealerHand.Count; i++)
-                  {
-                    dealerTotal += dealerHand[i].GetCardValue();
-                  }
-                  /*
-                                    Console.WriteLine($"Dealer total is {dealerTotal}");
-                                    Console.WriteLine($"Dealer first card is {dealerHand[0].Rank} of {dealerHand[0].Suit}");
-                                    Console.WriteLine($"Dealer second card is {dealerHand[1].Rank} of {dealerHand[1].Suit}");
-                                    Console.WriteLine($"Dealer third card is {dealerHand[2].Rank} of {dealerHand[2].Suit}");
-                  */
-
-                }
+                dealerTotal += dealerHand[i].GetCardValue();
               }
-              else if (playerChoice == "hit")
+              if (dealerTotal >= 17)
               {
-                topcard = deck[0];
-                deck.RemoveAt(0);
-                playerHand.Add(topcard);
-
-                for (int i = 0; i < playerHand.Count; i++)
-                {
-                  playerTotal += playerHand[i].GetCardValue();
-                }
-
-                Console.WriteLine($"Your total is {playerTotal}");
-                Console.WriteLine($"Your first card is {playerHand[0].Rank} of {playerHand[0].Suit}");
-                Console.WriteLine($"Your second card is {playerHand[1].Rank} of {playerHand[1].Suit}");
-                Console.WriteLine($"Your third card is {playerHand[2].Rank} of {playerHand[2].Suit}");
-                if (playerTotal < 21)
-                {
-                  Console.WriteLine("hit or stand");
-                  playerChoice = Console.ReadLine().ToLower();
-                  if (playerChoice == "stand")
-                  {
-
-                    while (dealerTotal < 17)
-                    {
-
-                      topcard = deck[0];
-                      deck.RemoveAt(0);
-                      dealerHand.Add(topcard);
-
-                      for (int i = 0; i < dealerHand.Count; i++)
-                      {
-                        dealerTotal += dealerHand[i].GetCardValue();
-                      }
-                      /*
-                                            Console.WriteLine($"Dealer total is {dealerTotal}");
-                                            Console.WriteLine($"Dealer first card is {dealerHand[0].Rank} of {dealerHand[0].Suit}");
-                                            Console.WriteLine($"Dealer second card is {dealerHand[1].Rank} of {dealerHand[1].Suit}");
-                                            Console.WriteLine($"Dealer third card is {dealerHand[2].Rank} of {dealerHand[2].Suit}");
-                      */
-
-                    }
-                  }
-                  else if (playerChoice == "hit")
-                  {
-                    topcard = deck[0];
-                    deck.RemoveAt(0);
-                    playerHand.Add(topcard);
-
-                    for (int i = 0; i < playerHand.Count; i++)
-                    {
-                      playerTotal += playerHand[i].GetCardValue();
-                    }
-
-                    Console.WriteLine($"Your total is {playerTotal}");
-                    Console.WriteLine($"Your first card is {playerHand[0].Rank} of {playerHand[0].Suit}");
-                    Console.WriteLine($"Your second card is {playerHand[1].Rank} of {playerHand[1].Suit}");
-                    Console.WriteLine($"Your third card is {playerHand[2].Rank} of {playerHand[2].Suit}");
-
-
-                  }
-
-                }
+                limit = false;
               }
-              //stand
-
-              else if (playerChoice == "stand")
-              {
-
-                while (dealerTotal < 17)
-                {
-
-                  topcard = deck[0];
-                  deck.RemoveAt(0);
-                  dealerHand.Add(topcard);
-
-                  for (int i = 0; i < dealerHand.Count; i++)
-                  {
-                    dealerTotal += dealerHand[i].GetCardValue();
-                  }
-                  /*
-                                    Console.WriteLine($"Dealer total is {dealerTotal}");
-                                    Console.WriteLine($"Dealer first card is {dealerHand[0].Rank} of {dealerHand[0].Suit}");
-                                    Console.WriteLine($"Dealer second card is {dealerHand[1].Rank} of {dealerHand[1].Suit}");
-                                    Console.WriteLine($"Dealer third card is {dealerHand[2].Rank} of {dealerHand[2].Suit}");
-
-                  */
-                }
-              }
-
-
+              // game logic
             }
-
-            {
-
-            }
-
-
             if (playerTotal == 21 && dealerTotal > 21 || playerTotal == 21 && dealerTotal != 21 || playerTotal == 21 && dealerTotal < 21)
             {
               Console.WriteLine($"Congratulations {user} your total was {playerTotal} and the dealer total was {dealerTotal}");
-
             }
-
             else if (dealerTotal == playerTotal && dealerTotal < 21 && playerTotal < 21)
             {
-              Console.WriteLine("${user}, you and the dealer bust ");
-
+              Console.WriteLine($"{user}, your total was {playerTotal} and the dealers was {dealerTotal}.  You both bust ");
             }
             else if (dealerTotal == 21 && playerTotal == 21)
             {
               Console.WriteLine("${user}, you and the dealer had {playerTotal} ");
-
-              Console.WriteLine($"Dealer first card is {dealerHand[0].Rank} of {dealerHand[0].Suit}");
-              Console.WriteLine($"Dealer second card is {dealerHand[1].Rank} of {dealerHand[1].Suit}");
-              Console.WriteLine($"Dealer third card is {dealerHand[2].Rank} of {dealerHand[2].Suit}");
             }
-
-            Console.WriteLine("Play again? 'yes' or 'no'");
-            string playAgain = Console.ReadLine().ToLower();
-            if (playAgain == "no")
-              flag = false;
-            else if (playAgain == "yes")
+            else if (dealerTotal == 21 && playerTotal > 21 || dealerTotal == 21 && playerTotal != 21 || dealerTotal == 21 && playerTotal < 21)
             {
-              flag = true;
+              Console.WriteLine($"You lose! The dealer's total was {dealerTotal} and yours is {playerTotal}");
+            }
+            else if (dealerTotal != 21 && playerTotal != 21 || dealerTotal > playerTotal)
+            {
+              Console.WriteLine("You lose! The dealer's total was {dealerTotal} and yours is {playerTotal} ");
+            }
+            else if (dealerTotal != 21 && playerTotal != 21 || dealerTotal < playerTotal)
+            {
+              Console.WriteLine(" You win! The dealer's total was {dealerTotal} and yours is {playerTotal}");
             }
           }
+        }
 
+        Console.WriteLine("Play again? 'yes' or 'no'");
+        string playAgain = Console.ReadLine().ToLower();
+        if (playAgain == "no")
+          flag = false;
+        else if (playAgain == "yes")
+        {
+          flag = true;
         }
       }
     }
