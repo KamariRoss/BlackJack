@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kamariross/sdg-project/BlackJack/BlackJack.csproj",
+      "projectUniqueName": "/Users/kamariross/sdg-hw/BlackJack/BlackJack.csproj",
       "projectName": "BlackJack",
-      "projectPath": "/Users/kamariross/sdg-project/BlackJack/BlackJack.csproj",
+      "projectPath": "/Users/kamariross/sdg-hw/BlackJack/BlackJack.csproj",
       "packagesPath": "/Users/kamariross/.nuget/packages/",
-      "outputPath": "/Users/kamariross/sdg-project/BlackJack/obj/",
+      "outputPath": "/Users/kamariross/sdg-hw/BlackJack/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/kamariross/.nuget/NuGet/NuGet.Config"
@@ -56,7 +56,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.102/RuntimeIdentifierGraph.json"
       }
     }
   }
